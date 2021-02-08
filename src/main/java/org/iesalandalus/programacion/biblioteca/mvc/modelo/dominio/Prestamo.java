@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -15,8 +16,8 @@ public class Prestamo {
 	private static final int MAX_DIAS_PRESTAMO = 20;
 	public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
-	private LocalDate fechaPrestamo ; // of(2020, 01, 01)
-	private LocalDate fechaDevolucion ;
+	private LocalDate fechaPrestamo; // of(2020, 01, 01)
+	private LocalDate fechaDevolucion;
 
 	private Alumno alumno;
 	private Libro libro;
@@ -50,8 +51,7 @@ public class Prestamo {
 	 * @return: un préstamo ficticio correcto de la clase Prestamo
 	 **/
 	public static Prestamo getPrestamoFicticio(Alumno alumno, Libro libro) {
-		LocalDate fecha = LocalDate.now();
-		return new Prestamo(alumno, libro, fecha);
+		return new Prestamo(alumno, libro, LocalDate.now());
 	}
 
 	/**
@@ -73,22 +73,26 @@ public class Prestamo {
 	 * devolución, serán 0 pts Si no: 20(máximo de días) / pts del libro * 20(máximo
 	 * de días).
 	 * 
-	 * @return: entero CORREGIR
+	 * @return: entero 			CORREGIR
 	 **/
 	public int getPuntos() {
 
 		int puntos = 0;
-		if(fechaDevolucion==null) {
-			return puntos=0;
+		if (fechaDevolucion == null) {
+			return puntos = 0;
 		}
+
+		//Period periodo = Period.between( getFechaPrestamo(),getFechaDevolucion());
+		//long dddd = ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion);
+		
 		if (fechaDevolucion.isBefore(fechaPrestamo) || fechaDevolucion.isEqual(fechaPrestamo)) {
-			throw new IllegalArgumentException(
-					"PUNTOSerior a la fecha de préstamo.");
+			throw new IllegalArgumentException("ERROR: No se puede devolver el libro.");
 		}
-		if (ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion) <= MAX_DIAS_PRESTAMO) {
+		if (ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion()) <= MAX_DIAS_PRESTAMO) {
 			puntos = Math.round(
 					ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion) / (libro.getPuntos() * MAX_DIAS_PRESTAMO));
 		}
+		
 		return puntos;
 	}
 
@@ -128,7 +132,6 @@ public class Prestamo {
 		if (fechaPrestamo.isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("ERROR: La fecha de préstamo no puede ser futura.");
 		}
-
 		this.fechaPrestamo = fechaPrestamo;
 	}
 
@@ -187,14 +190,20 @@ public class Prestamo {
 	@Override
 	public String toString() {
 
-		if (fechaDevolucion == null) {
-			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, puntos=%s", alumno, libro,
-					fechaPrestamo.format(FORMATO_FECHA), getPuntos());
-		} else {
-			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, fecha de devolución= %s, puntos=%s",
-					alumno, libro, fechaPrestamo.format(FORMATO_FECHA), fechaDevolucion.format(FORMATO_FECHA),
-					getPuntos());
-		}
+		String cadenaFechaDevolucion = (fechaDevolucion == null) ? ""
+				: ", fecha de devolución=" + fechaDevolucion.format(FORMATO_FECHA);
+
+		return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s%s, puntos=%s", alumno, libro,
+				fechaPrestamo.format(FORMATO_FECHA), cadenaFechaDevolucion, getPuntos());
+
+//		if (fechaDevolucion == null) {
+//			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, puntos=%s", alumno, libro,
+//					fechaPrestamo.format(FORMATO_FECHA), getPuntos());
+//		} else {
+//			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, fecha de devolución= %s, puntos=%s",
+//					alumno, libro, fechaPrestamo.format(FORMATO_FECHA), fechaDevolucion.format(FORMATO_FECHA),
+//					getPuntos());
+//		}
 
 	}
 
