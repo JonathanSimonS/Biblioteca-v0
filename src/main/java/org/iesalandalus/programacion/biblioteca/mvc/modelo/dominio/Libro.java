@@ -17,21 +17,6 @@ public class Libro {
 	// Constructores
 
 	public Libro(String titulo, String autor, int numPaginas) {
-		if (titulo == null) {
-			throw new NullPointerException("ERROR: El título no puede ser nulo.");
-		}
-		if (titulo.trim().equals("")) {
-			throw new IllegalArgumentException("ERROR: El título no puede estar vacío.");
-		}
-		if (autor == null) {
-			throw new NullPointerException("ERROR: El autor no puede ser nulo.");
-		}
-		if (autor.trim().equals("")) {
-			throw new IllegalArgumentException("ERROR: El autor no puede estar vacío.");
-		}
-		if (numPaginas <= 0) {
-			throw new IllegalArgumentException("ERROR: El número de páginas debe ser mayor que cero.");
-		}
 		setTitulo(titulo);
 		setAutor(autor);
 		setNumPaginas(numPaginas);
@@ -78,6 +63,9 @@ public class Libro {
 		if (titulo == null) {
 			throw new NullPointerException("ERROR: El título no puede ser nulo.");
 		}
+		if (titulo.trim().equals("")) {
+			throw new IllegalArgumentException("ERROR: El título no puede estar vacío.");
+		}
 		this.titulo = titulo;
 	}
 
@@ -88,6 +76,9 @@ public class Libro {
 	private void setAutor(String autor) {
 		if (autor == null) {
 			throw new NullPointerException("ERROR: El autor no puede ser nulo.");
+		}
+		if (autor.trim().equals("")) {
+			throw new IllegalArgumentException("ERROR: El autor no puede estar vacío.");
 		}
 		this.autor = autor;
 	}
