@@ -1,7 +1,6 @@
 package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -16,7 +15,7 @@ public class Prestamo {
 	private static final int MAX_DIAS_PRESTAMO = 20;
 	public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
-	private LocalDate fechaPrestamo; // of(2020, 01, 01)
+	private LocalDate fechaPrestamo;
 	private LocalDate fechaDevolucion;
 
 	private Alumno alumno;
@@ -33,13 +32,12 @@ public class Prestamo {
 		if (e == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un préstamo nulo.");
 		}
-
-		e = new Prestamo(e.getAlumno(), e.getLibro(), e.getFechaPrestamo());
-
-		// Prestamo e= new Prestamo(e.getAlumno(), e.getLibro(), e.getFechaPrestamo());
 		setAlumno(e.getAlumno());
 		setLibro(e.getLibro());
 		setFechaPrestamo(e.getFechaPrestamo());
+		if (e.getFechaDevolucion() != null) {
+			this.fechaDevolucion = e.getFechaDevolucion();
+		}
 	}
 
 	// Métodos
@@ -73,7 +71,7 @@ public class Prestamo {
 	 * devolución, serán 0 pts Si no: 20(máximo de días) / pts del libro * 20(máximo
 	 * de días).
 	 * 
-	 * @return: entero 			CORREGIR
+	 * @return: entero CORREGIR
 	 **/
 	public int getPuntos() {
 
@@ -81,18 +79,9 @@ public class Prestamo {
 		if (fechaDevolucion == null) {
 			return puntos = 0;
 		}
-
-		//Period periodo = Period.between( getFechaPrestamo(),getFechaDevolucion());
-		//long dddd = ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion);
-		
-		if (fechaDevolucion.isBefore(fechaPrestamo) || fechaDevolucion.isEqual(fechaPrestamo)) {
-			throw new IllegalArgumentException("ERROR: No se puede devolver el libro.");
-		}
 		if (ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion()) <= MAX_DIAS_PRESTAMO) {
-			puntos = Math.round(
-					ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion) / (libro.getPuntos() * MAX_DIAS_PRESTAMO));
+			puntos = (int) Math.round(libro.getPuntos() / ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion));
 		}
-		
 		return puntos;
 	}
 
@@ -196,14 +185,6 @@ public class Prestamo {
 		return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s%s, puntos=%s", alumno, libro,
 				fechaPrestamo.format(FORMATO_FECHA), cadenaFechaDevolucion, getPuntos());
 
-//		if (fechaDevolucion == null) {
-//			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, puntos=%s", alumno, libro,
-//					fechaPrestamo.format(FORMATO_FECHA), getPuntos());
-//		} else {
-//			return String.format("alumno=(%s), libro=(%s), fecha de préstamo=%s, fecha de devolución= %s, puntos=%s",
-//					alumno, libro, fechaPrestamo.format(FORMATO_FECHA), fechaDevolucion.format(FORMATO_FECHA),
-//					getPuntos());
-//		}
 
 	}
 

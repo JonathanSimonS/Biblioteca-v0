@@ -18,6 +18,7 @@ public class Consola {
 
 	// Métodos
 	public static void mostrarMenu() {
+		mostrarCabecera("MENÚ DE OPCIONES");
 		for (Opcion opcion : Opcion.values()) {
 			System.out.println(opcion);
 		}
@@ -31,8 +32,9 @@ public class Consola {
 	public static void mostrarCabecera(String cadena) {
 		System.out.println(cadena);
 		for (int i = 0; i < cadena.length(); i++) {
-			System.out.println("-");
+			System.out.print("-");
 		}
+		System.out.println("\n");
 	}
 
 	public static int elegirOpcion() {

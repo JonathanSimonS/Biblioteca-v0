@@ -23,7 +23,7 @@ public class Alumnos {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 
 		this.capacidad = capacidad;
-		coleccionAlumnos = new Alumno[capacidad];
+		coleccionAlumnos = new Alumno[capacidad]; // Alumnos totales que se registrarán
 		tamano = 0; // El tamaño sería de 0, pues no hay ningún alumno creado
 	}
 
@@ -73,11 +73,6 @@ public class Alumnos {
 		return indice;
 	}
 
-	/**
-	 * Insertará un alumno al final del array
-	 * 
-	 * @param alumno
-	 */
 	public void insertar(Alumno alumno) throws OperationNotSupportedException {
 		if (alumno == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un alumno nulo.");
@@ -90,6 +85,7 @@ public class Alumnos {
 		}
 		if (tamanoSuperado(indice)) { // Si el tamaño se supera, se crea un nuevo alumno en ese índice
 			coleccionAlumnos[indice] = new Alumno(alumno);
+			
 			tamano++;
 		} else { // Si el tamaño no es superado, es que ya hay un alumno igual
 			throw new OperationNotSupportedException("ERROR: Ya existe un alumno con ese correo.");
@@ -137,12 +133,25 @@ public class Alumnos {
 		if (tamanoSuperado(indice)) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún alumno con ese correo.");
 		} else {
-			int i;
-			for (i = indice; !tamanoSuperado(i); i++) {
-				coleccionAlumnos[i] = coleccionAlumnos[i + 1];
-			}
-			coleccionAlumnos[i] = null;
-			tamano--;
+			desplazarUnaPosicionHaciaIzquierda(indice);
 		}
+	}
+	
+	/**
+	 * Borrará la posición pasada por parámetro, esa posición se reemplazará por la siguiente
+	 * Todo el array quedará compactado a la izquierda hasta que se supere el tamaño
+	 * 
+	 * @param indice de un préstamo
+	 * 
+	 */
+	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
+		
+		int i;
+		for (i = indice; !tamanoSuperado(i); i++) {
+			coleccionAlumnos[i] = coleccionAlumnos[i + 1];
+		}
+		coleccionAlumnos[i] = null;
+		tamano--;
+		
 	}
 }

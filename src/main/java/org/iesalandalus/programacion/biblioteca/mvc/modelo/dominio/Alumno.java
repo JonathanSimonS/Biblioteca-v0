@@ -8,7 +8,7 @@ public class Alumno {
 
 	// Atributos y constantes
 	
-	private static final String ER_NOMBRE = "^([\\p{L} ])+$"; // CORREGIR, permite nombres de una palabra
+	private static final String ER_NOMBRE = "[a-zA-ZÁáÉéÍíÓóÚú]+[\\s]+[a-zA-ZÁáÉéÍíÓóÚú\\s]*";
 	private static final String ER_CORREO = "\\w+(?:\\.\\w+)*@{1}\\w+\\.\\w{2,5}";
 	private String nombre;
 	private String correo; 
