@@ -6,123 +6,107 @@ package org.iesalandalus.programacion.biblioteca.mvc.vista;
  **/
 public enum Opcion {
 
-	INSERTAR_ALUMNO("Insertar alumno") {
+	INSERTAR_ALUMNO(" Insertar alumno") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-			
+			vista.insertarAlumno();
 		}
 	},
-	BUSCAR_ALUMNO("Buscar alumno") {
+	BUSCAR_ALUMNO(" Buscar alumno") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+			vista.buscarAlumno();
 		}
 	},
-	BORRAR_ALUMNO("Borrar alumno") {
+	BORRAR_ALUMNO(" Borrar alumno") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+			vista.borrarAlumno();
 		}
 	},
-	LISTAR_ALUMNOS("Listar alumnos") {
+	LISTAR_ALUMNOS(" Listar alumnos") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+			vista.listarAlumnos();
 		}
 	},
-	INSERTAR_LIBRO("Insertar libro") {
+	INSERTAR_LIBRO(" Insertar libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+			vista.insertarLibro();
 		}
 	},
-	BUSCAR_LIBRO("Buscar libro") {
+	BUSCAR_LIBRO(" Buscar libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+			vista.buscarLibro();
 		}
 	},
-	BORRAR_LIBRO("Borrar libro") {
+	BORRAR_LIBRO(" Borrar libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.borrarLibro();
 		}
 	},
-	LISTAR_LIBROS("Listar libros") {
+	LISTAR_LIBROS(" Listar libros") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.listarLibros();
 		}
 	},
-	PRESTAR_LIBRO("Prestar libro") {
+	PRESTAR_LIBRO(" Prestar libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.prestarLibro();
 		}
 	},
-	DEVOLVER_LIBRO("Devolver libro") {
+	DEVOLVER_LIBRO(" Devolver libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
+ 			vista.devolverLibro();
 
 		}
 	},
 	BUSCAR_PRESTAMO("Buscar préstamo") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.buscarPrestamo();
 		}
 	},
 	BORRAR_PRESTAMO("Borrar préstamo") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.borrarPrestamo();
 		}
 	},
 	LISTAR_PRESTAMOS("Listar préstamo") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.listarPrestamos();
 		}
 	},
 	LISTAR_PRESTAMOS_ALUMNO("Listar préstamo por alumno") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.listarPrestamosAlumno();
 		}
 	},
 	LISTAR_PRESTAMOS_LIBRO("Listar préstamo por libro") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.listarPrestamosLibro();
 		}
 	},
 	LISTAR_PRESTAMOS_FECHA("Listar préstamo por fecha") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.listarPrestamosFecha();
 		}
 	},
 	SALIR("Salir del menú") {
 		@Override
 		public void ejecutar() {
-			// TODO Esbozo de método generado automáticamente
-
+ 			vista.terminar();
 		}
 	};
 
@@ -148,7 +132,7 @@ public enum Opcion {
 	 **/
 	public static Opcion getOpcionSegunOrdinal(int numero) {
 		if (esOrdinalValido(numero)) {
-			return values()[numero];    //El método values() devuelve todos los valores dentro del enum
+			return values()[numero]; // El método values() devuelve todos los valores dentro del enum
 		} else {
 			throw new IllegalArgumentException("El ordinal no es válido.");
 		}
@@ -167,7 +151,7 @@ public enum Opcion {
 
 	@Override
 	public String toString() {
-		return ordinal()+".-"+ mensaje; //Muestro el número con el método ordinal()
+		return ordinal() + ".-" + mensaje; // Muestro el número con el método ordinal()
 	}
 
 }
