@@ -6,7 +6,7 @@ import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Libro;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 public class Libros {
 

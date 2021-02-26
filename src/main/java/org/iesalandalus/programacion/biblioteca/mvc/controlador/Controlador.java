@@ -8,7 +8,7 @@ import org.iesalandalus.programacion.biblioteca.mvc.vista.Vista;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 
 public class Controlador {

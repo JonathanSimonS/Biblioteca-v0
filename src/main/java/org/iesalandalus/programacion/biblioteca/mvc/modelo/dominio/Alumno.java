@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 public class Alumno {
 
@@ -17,7 +17,7 @@ public class Alumno {
 	// M. Constructores
 	
 	public Alumno(String nombre, String correo, Curso curso) {
-		setNombre(formateaNombre(nombre));
+		setNombre(nombre);
 		setCorreo(correo);
 		setCurso(curso);
 	}
@@ -58,7 +58,7 @@ public class Alumno {
 		if (nombre.trim().equals("")) {
 			throw new IllegalArgumentException("ERROR: El nombre no puede estar vacío.");
 		}
-		this.nombre = nombre;
+		this.nombre = formateaNombre(nombre);
 	}
 
 	/**

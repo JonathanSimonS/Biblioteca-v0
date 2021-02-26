@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.biblioteca.mvc.vista;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 public enum Opcion {
 

@@ -9,7 +9,7 @@ import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.*;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 public class Vista {
 
@@ -22,6 +22,9 @@ public class Vista {
 	}
 
 	public void setControlador(Controlador controlador) {
+		if(controlador==null) {
+			throw new NullPointerException("ERROR: El controlador no puede ser nulo.");
+		}
 		this.controlador = controlador;
 	}
 

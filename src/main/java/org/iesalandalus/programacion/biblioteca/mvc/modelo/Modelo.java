@@ -12,7 +12,7 @@ import org.iesalandalus.programacion.biblioteca.mvc.modelo.negocio.*;
  * adecuado.
  * 
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 public class Modelo {
 

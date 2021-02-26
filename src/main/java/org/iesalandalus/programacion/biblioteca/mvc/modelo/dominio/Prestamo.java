@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * @author: Jonathan Simón Sánchez
- * 
+ * @version: v0
  **/
 
 public class Prestamo {
